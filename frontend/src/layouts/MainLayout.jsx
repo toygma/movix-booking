@@ -6,9 +6,9 @@ import Loading from "../components/Loading";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="flex flex-col">
       <Navbar />
-      <main>
+      <main className="min-h-screen">
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>
