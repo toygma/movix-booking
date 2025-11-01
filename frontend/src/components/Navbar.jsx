@@ -1,8 +1,9 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { assets } from "../assets/assets";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, Ticket } from "lucide-react";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
+import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 
 const menudata = [
   {
@@ -34,15 +35,19 @@ const menudata = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const { user } = useUser();
+  const { openSignIn } = useClerk();
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full  backdrop-blur-md border-b border-white/5">
+    <header className="fixed top-0 left-0 z-50 w-full backdrop-blur-md border-b border-white/5">
       <nav className="flex items-center justify-between px-6 md:px-16 lg:px-36 py-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 group">
-          <img 
-            src={assets.logo} 
-            alt="Movix Logo" 
+          <img
+            src={assets.logo}
+            alt="Movix Logo"
             className="w-12 h-12 rounded-full ring-2 ring-red-500/50 group-hover:ring-red-500 transition-all duration-300"
           />
           <span className="text-2xl font-bold text-white hidden sm:block">
@@ -66,36 +71,61 @@ const Navbar = () => {
         </ul>
 
         {/* Right Actions */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3 ">
           {/* Search Button */}
-          <button 
-            className="p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300"
+          <button
+            className="p-2  text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300"
             aria-label="Search"
           >
             <Search className="w-5 h-5" />
           </button>
 
-          {/* Login Button */}
-          <Link
-            to="/login"
-            className="hidden sm:block px-6 py-2 bg-linear-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-red-500/30 hover:scale-105"
-          >
-            Login
-          </Link>
-
+          {/* User Button */}
+          <div className="lg:block hidden mt-2">
+            {!user ? (
+              <button
+                onClick={openSignIn}
+                className="hidden sm:block px-5 py-2 bg-linear-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-red-500/30 hover:scale-105"
+              >
+                Login
+              </button>
+            ) : (
+              <UserButton
+                appearance={{
+                  elements: {
+                    userButtonPopoverActionButton: "hover:bg-white/5",
+                    userButtonPopoverActionButtonIcon: "w-4 h-4",
+                    userButtonPopoverActionButtonText: "text-sm",
+                  },
+                }}
+              >
+                <UserButton.MenuItems>
+                  <UserButton.Action
+                    label="My Bookings"
+                    labelIcon={<Ticket className="w-4 h-4" />}
+                    onClick={() => navigate("/my-bookings")}
+                  />
+                </UserButton.MenuItems>
+              </UserButton>
+            )}
+          </div>
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </nav>
 
       {/* Mobile Menu */}
-     <MobileMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
+      <MobileMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
     </header>
   );
 };
