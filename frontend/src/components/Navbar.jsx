@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { assets } from "../assets/assets";
 import { Search, Menu, X, Ticket } from "lucide-react";
 import { useState } from "react";
@@ -35,6 +35,8 @@ const menudata = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
   const navigate = useNavigate();
 
   const { user } = useUser();
@@ -61,10 +63,18 @@ const Navbar = () => {
             <li key={item.id}>
               <Link
                 to={item.href}
-                className="relative px-4 py-2 text-gray-300 hover:text-white font-medium text-sm transition-colors duration-300 group"
+                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                  location.pathname === item.href
+                    ? "text-white"
+                    : "text-gray-300 hover:text-white"
+                } group`}
               >
                 {item.title}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-red-500 to-pink-500 group-hover:w-full transition-all duration-300"></span>
+                <span
+                  className={`absolute bottom-0 left-0 h-0.5 bg-linear-to-r from-red-500 to-pink-500 transition-all duration-300 ${
+                    location.pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                ></span>
               </Link>
             </li>
           ))}

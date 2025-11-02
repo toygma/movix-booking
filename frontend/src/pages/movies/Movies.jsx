@@ -1,22 +1,29 @@
 import { useState } from "react";
-import { Search, Filter} from "lucide-react";
+import { Search, Filter } from "lucide-react";
 import { dummyShowsData } from "../../assets/assets";
 import MovieCard from "../../components/MovieCard";
+import SkeletonPage from "../../components/Skeleton";
 
 const Movies = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("all");
 
   // Get unique genres
-  const genres = ["all", ...new Set(dummyShowsData.flatMap(movie => 
-    movie.genres.map(g => g.name)
-  ))];
+  const genres = [
+    "all",
+    ...new Set(
+      dummyShowsData.flatMap((movie) => movie.genres.map((g) => g.name))
+    ),
+  ];
 
   // Filter movies
-  const filteredMovies = dummyShowsData.filter(movie => {
-    const matchesSearch = movie.title.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesGenre = selectedGenre === "all" || 
-      movie.genres.some(g => g.name === selectedGenre);
+  const filteredMovies = dummyShowsData.filter((movie) => {
+    const matchesSearch = movie.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const matchesGenre =
+      selectedGenre === "all" ||
+      movie.genres.some((g) => g.name === selectedGenre);
     return matchesSearch && matchesGenre;
   });
 
@@ -34,7 +41,10 @@ const Movies = () => {
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search Input */}
             <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+              <Search
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                size={20}
+              />
               <input
                 type="text"
                 placeholder="Search movies..."
@@ -46,13 +56,16 @@ const Movies = () => {
 
             {/* Genre Filter */}
             <div className="relative md:w-64">
-              <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+              <Filter
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                size={20}
+              />
               <select
                 value={selectedGenre}
                 onChange={(e) => setSelectedGenre(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 bg-zinc-900 border border-zinc-700 rounded-xl text-white focus:outline-none focus:border-red-500 transition-colors appearance-none cursor-pointer"
               >
-                {genres.map(genre => (
+                {genres.map((genre) => (
                   <option key={genre} value={genre}>
                     {genre === "all" ? "All Genres" : genre}
                   </option>
@@ -63,7 +76,8 @@ const Movies = () => {
 
           {/* Results Count */}
           <p className="text-gray-400 mt-4">
-            {filteredMovies.length} {filteredMovies.length === 1 ? "movie" : "movies"} found
+            {filteredMovies.length}{" "}
+            {filteredMovies.length === 1 ? "movie" : "movies"} found
           </p>
         </div>
       </div>
@@ -75,7 +89,9 @@ const Movies = () => {
             <div className="w-20 h-20 rounded-full bg-zinc-900 flex items-center justify-center mb-4">
               <Search className="text-gray-600" size={32} />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2">No movies found</h3>
+            <h3 className="text-xl font-semibold text-white mb-2">
+              No movies found
+            </h3>
             <p className="text-gray-400">Try adjusting your search or filter</p>
           </div>
         ) : (

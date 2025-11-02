@@ -7,7 +7,7 @@ const Home = () => {
     <div>
       <Hero />
       <FeaturedSection />
-      <TrailerSection/>
+      <TrailerSection />
     </div>
   );
 };

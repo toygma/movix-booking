@@ -2,6 +2,7 @@ import { useState } from "react";
 import { dummyTrailers } from "../../../../assets/assets";
 import BlueCircle from "./BlueCircle";
 import ReactPlayer from "react-player";
+import { motion } from "motion/react";
 
 const TrailerSection = () => {
   const [trailer, setTrailer] = useState(dummyTrailers[0]);
@@ -11,24 +12,34 @@ const TrailerSection = () => {
       {/* Background Decorative Elements */}
       <BlueCircle />
       {/* Header Section */}
-      <div className="relative flex items-center gap-4 mb-12">
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="relative flex items-center gap-4 mb-12"
+      >
         <div className="w-1 h-8 bg-linear-to-b from-red-500 to-red-600 rounded-full" />
         <h2 className="text-3xl font-bold text-white">Trailers</h2>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Video Player */}
         <div className="lg:col-span-2">
-          <div className="relative rounded-2xl overflow-hidden bg-black border border-zinc-800 shadow-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative rounded-2xl overflow-hidden bg-black border border-zinc-800 shadow-2xl"
+          >
             <ReactPlayer
               key={trailer.id}
               src={trailer.videoUrl}
               width="100%"
               height="500px"
               controls
-              playing={false} 
+              playing={false}
             />
-          </div>
+          </motion.div>
 
           {/* Video Info */}
           <div className="mt-6 space-y-2">
@@ -43,9 +54,17 @@ const TrailerSection = () => {
             More Trailers
           </h3>
           <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900">
-            {dummyTrailers.map((item) => (
-              <button
+            {dummyTrailers.map((item, index) => (
+              <motion.button
                 key={item.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                  ease: "easeOut",
+                }}
                 onClick={() => setTrailer(item)}
                 className={`w-full group transition-all duration-300 ${
                   trailer.id === item.id
@@ -85,7 +104,7 @@ const TrailerSection = () => {
                     </p>
                   </div>
                 </div>
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>
