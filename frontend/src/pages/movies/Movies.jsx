@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Search, Filter } from "lucide-react";
 import { dummyShowsData } from "../../assets/assets";
 import MovieCard from "../../components/MovieCard";
-import SkeletonPage from "../../components/Skeleton";
+import Pagination from "../../components/Pagination";
 
 const Movies = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1); 
+  
+  const itemsPerPage = 4; 
 
-  // Get unique genres
   const genres = [
     "all",
     ...new Set(
@@ -16,7 +18,6 @@ const Movies = () => {
     ),
   ];
 
-  // Filter movies
   const filteredMovies = dummyShowsData.filter((movie) => {
     const matchesSearch = movie.title
       .toLowerCase()
@@ -27,13 +28,28 @@ const Movies = () => {
     return matchesSearch && matchesGenre;
   });
 
+  const totalPages = Math.ceil(filteredMovies.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentMovies = filteredMovies.slice(startIndex, endIndex);
+
+  const handleSearch = (value) => {
+    setSearchQuery(value);
+    setCurrentPage(1);
+  };
+
+  const handleGenreChange = (value) => {
+    setSelectedGenre(value);
+    setCurrentPage(1);
+  };
+
   return (
-    <div className="min-h-screen  ">
+    <div className="min-h-screen">
       {/* Header Section */}
-      <div className="relative pt-12 ">
+      <div className="relative pt-12">
         <div className="container mx-auto px-4 py-12">
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-1 h-10 bg-linear-to-b from-red-500 to-red-600 rounded-full" />
+            <div className="w-1 h-10 bg-linear-to-b from-red-500 to-red-600 rounded-full" /> 
             <h1 className="text-4xl font-bold text-white">All Movies</h1>
           </div>
 
@@ -49,7 +65,7 @@ const Movies = () => {
                 type="text"
                 placeholder="Search movies..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearch(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 bg-zinc-900 border border-zinc-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-red-500 transition-colors"
               />
             </div>
@@ -62,7 +78,7 @@ const Movies = () => {
               />
               <select
                 value={selectedGenre}
-                onChange={(e) => setSelectedGenre(e.target.value)}
+                onChange={(e) => handleGenreChange(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 bg-zinc-900 border border-zinc-700 rounded-xl text-white focus:outline-none focus:border-red-500 transition-colors appearance-none cursor-pointer"
               >
                 {genres.map((genre) => (
@@ -96,12 +112,20 @@ const Movies = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredMovies.map((movie) => (
+            {currentMovies.map((movie) => ( 
               <MovieCard key={movie.id} movie={movie} />
             ))}
           </div>
         )}
       </div>
+
+      {filteredMovies.length > 0 && (
+        <Pagination 
+          totalPages={totalPages} 
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+        />
+      )}
     </div>
   );
 };

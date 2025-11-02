@@ -3,8 +3,19 @@ import MovieCard from "../../../../components/MovieCard";
 import { dummyShowsData } from "../../../../assets/assets";
 import BlueCircle from "./BlueCircle";
 import { motion } from "motion/react";
+import { useState } from "react";
+import Pagination from "../../../../components/Pagination";
 
 const FeaturedSection = () => {
+  const [currentPage,setCurrentPage] = useState(1);
+  const itemsPerPage = 4; 
+
+  const totalPages = Math.ceil(dummyShowsData.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage;
+  const currentMovies = dummyShowsData.slice(startIndex, endIndex);
+
+
   return (
     <div className="relative container mx-auto px-4 py-16 overflow-hidden">
       <BlueCircle />
@@ -47,7 +58,7 @@ const FeaturedSection = () => {
 
       {/* Movies Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {dummyShowsData.map((item, index) => (
+        {currentMovies.map((item, index) => (
           <motion.div
             key={item.id}
             initial={{ opacity: 0, y: 50 }}
@@ -63,6 +74,13 @@ const FeaturedSection = () => {
           </motion.div>
         ))}
       </div>
+        {currentMovies.length > 0 && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
+        )}
     </div>
   );
 };
