@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import NotFound from "../components/NotFound";
 
 const Home = lazy(() => import("../pages/home/Home"));
+const Movies = lazy(() => import("../pages/movies/Movies"));
 
 export const mainRoutes = {
   path: "/",
@@ -10,8 +11,12 @@ export const mainRoutes = {
   errorElement: <NotFound />,
   children: [
     {
-      index: true, 
+      index: true,
       element: <Home />,
+    },
+    {
+      path: "movies",
+      element: <Movies />,
     },
   ],
 };

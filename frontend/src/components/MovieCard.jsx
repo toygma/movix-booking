@@ -8,11 +8,13 @@ const MovieCard = ({ movie }) => {
         <img
           src={movie.backdrop_path}
           alt={movie.title}
-          className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
+         className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110 will-change-transform"
+
         />
         {/* linear Overlay */}
         <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-60"></div>
-        
+
         {/* Rating Badge */}
         <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-black/80 backdrop-blur-sm px-3 py-1.5 rounded-full border border-yellow-500/30">
           <Star size={14} className="fill-yellow-500 text-yellow-500" />
