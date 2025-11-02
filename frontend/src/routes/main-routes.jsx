@@ -4,6 +4,7 @@ import NotFound from "../components/NotFound";
 
 const Home = lazy(() => import("../pages/home/Home"));
 const Movies = lazy(() => import("../pages/movies/Movies"));
+const MovieDetails = lazy(() => import("../pages/detail/MovieDetails"));
 
 export const mainRoutes = {
   path: "/",
@@ -17,6 +18,10 @@ export const mainRoutes = {
     {
       path: "movies",
       element: <Movies />,
+    },
+    {
+      path: "movie/:id",
+      element: <MovieDetails />,
     },
   ],
 };
