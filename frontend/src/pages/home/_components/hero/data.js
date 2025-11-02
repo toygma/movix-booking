@@ -1,4 +1,4 @@
-import { assets } from "../../assets/assets";
+import { assets } from "../../../../assets/assets";
 
 export const heroData = [
   {
@@ -7,7 +7,7 @@ export const heroData = [
     year: "2018",
     duration: "2h 30m",
     genres: ["Action", "Adventure", "Sci-Fi"],
-    logo: assets.marvelLogo,       
+    logo: assets.marvelLogo,
     background: assets.guardiansBg,
   },
   {
