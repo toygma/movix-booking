@@ -3,18 +3,22 @@ import { useParams, useNavigate } from "react-router";
 import { dummyDateTimeData, dummyShowsData } from "../../assets/assets";
 import DateSelect from "./_components/DateSelect";
 import { useEffect, useState } from "react";
+import MovieCard from "../../components/MovieCard";
 
 const MovieDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(2);
 
   useEffect(() => {
     const show = dummyShowsData.find((m) => m._id === id);
-    setMovie({
-      ...show,
-      dateTime: dummyDateTimeData,
-    });
+    if (show) {
+      setMovie({
+        ...show,
+        dateTime: dummyDateTimeData,
+      });
+    }
   }, [id]);
 
   if (!movie) {
@@ -61,7 +65,11 @@ const MovieDetails = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Calendar size={18} />
-                <span>{movie?.release_date ? new Date(movie.release_date).getFullYear() : "N/A"}</span>
+                <span>
+                  {movie?.release_date
+                    ? new Date(movie.release_date).getFullYear()
+                    : "N/A"}
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock size={18} />
@@ -77,7 +85,7 @@ const MovieDetails = () => {
                 >
                   {genre.name}
                 </span>
-              ))} 
+              ))}
             </div>
 
             <div className="flex gap-4">
@@ -111,12 +119,16 @@ const MovieDetails = () => {
                 <div className="flex justify-between py-2 border-b border-zinc-800">
                   <span className="text-gray-400">Release Date</span>
                   <span className="font-medium">
-                    {movie?.release_date ? new Date(movie.release_date).toLocaleDateString() : "N/A"}
+                    {movie?.release_date
+                      ? new Date(movie.release_date).toLocaleDateString()
+                      : "N/A"}
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-zinc-800">
                   <span className="text-gray-400">Runtime</span>
-                  <span className="font-medium">{movie?.runtime || "N/A"} minutes</span>
+                  <span className="font-medium">
+                    {movie?.runtime || "N/A"} minutes
+                  </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-zinc-800">
                   <span className="text-gray-400">Rating</span>
@@ -144,6 +156,28 @@ const MovieDetails = () => {
         </div>
       </div>
       <DateSelect datetime={movie?.dateTime} id={id} />
+
+      <div className="w-full  max-w-7xl mx-auto">
+        <p className="text-lg font-medium mt-20 mb-8 text-white">
+          You May Also Like
+        </p>
+        <div className="grid grid-cols-3 gap-12">
+          {dummyShowsData.slice(0, visibleCount).map((movie, index) => (
+            <MovieCard key={index} movie={movie} />
+          ))}
+        </div>
+
+          {visibleCount < dummyShowsData.length && (
+            <div className="flex justify-center items-center mt-20">
+              <button
+                onClick={() => setVisibleCount((prev) => prev + 2)} // 2 film daha ekle
+                className="px-10 py-3 text-sm bg-pink-400 mb-4 hover:bg-pink-900 transition rounded-md cursor-pointer"
+              >
+                Show More
+              </button>
+            </div>
+          )}
+      </div>
     </div>
   );
 };

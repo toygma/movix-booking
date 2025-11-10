@@ -1,8 +1,9 @@
 import { Star, Clock } from "lucide-react";
+import { Link } from "react-router";
 
 const MovieCard = ({ movie }) => {
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-gray-800 border-zinc-800 hover:border-zinc-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-500/10">
+    <Link to={`/movie/${movie._id}`} className="group relative overflow-hidden rounded-2xl bg-gray-800 border-zinc-800 hover:border-zinc-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-500/10">
       {/* Image Container with Overlay */}
       <div className="relative overflow-hidden">
         <img
@@ -55,7 +56,7 @@ const MovieCard = ({ movie }) => {
           Buy Tickets
         </button>
       </div>
-    </div>
+    </Link>
   );
 };
 
