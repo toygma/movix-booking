@@ -6,6 +6,7 @@ const Home = lazy(() => import("../pages/home/Home"));
 const Movies = lazy(() => import("../pages/movies/Movies"));
 const MovieDetails = lazy(() => import("../pages/detail/MovieDetails"));
 const Seat = lazy(() => import("../pages/seat/Seat"));
+const MyBookings = lazy(() => import("../pages/myBookings/MyBookings"));
 
 export const mainRoutes = {
   path: "/",
@@ -27,6 +28,10 @@ export const mainRoutes = {
     {
       path: "book/:id",
       element: <Seat />,
+    },
+     {
+      path: "my-bookings",
+      element: <MyBookings />,
     },
   ],
 };
