@@ -8,7 +8,7 @@ const MovieDetails = lazy(() => import("../pages/detail/MovieDetails"));
 const Seat = lazy(() => import("../pages/seat/Seat"));
 const MyBookings = lazy(() => import("../pages/myBookings/MyBookings"));
 
-export const mainRoutes = {
+export const MainRoutes = {
   path: "/",
   element: <MainLayout />,
   errorElement: <NotFound />,

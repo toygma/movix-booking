@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router";
-import { mainRoutes } from "./main-routes";
+import { MainRoutes } from "./MainRoutes";
+import { AdminRoutes } from "./AdminRoutes";
 
 export const routes = createBrowserRouter([
-    mainRoutes
+    MainRoutes,
+    AdminRoutes
 ])
