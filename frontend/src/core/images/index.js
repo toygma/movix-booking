@@ -1,0 +1,11 @@
+export { default as Logo } from "./logo.png";
+export { default as MarvelLogo } from "./marvel.svg";
+export { default as GooglePlay } from "./googlePlay.svg";
+export { default as AppStore } from "./appStore.svg";
+export { default as ScreenImage } from "./screenImage.svg";
+export { default as Profile } from "./profile.png";
+export { default as SpidermanBg } from "./spidermanBg.jpg";
+export { default as AvengersBg } from "./avengersBg.jpg";
+export { default as BlackPantherBg } from "./blackPantherBg.jpg";
+export { default as DoctorStrangeBg } from "./doctorStrangeBg.jpg";
+export { default as GuardiansBg } from "./guardiansBg.jpg";

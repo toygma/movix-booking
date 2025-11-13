@@ -1,4 +1,4 @@
-import { assets } from "../../../../assets/assets";
+import { AvengersBg, BlackPantherBg, DoctorStrangeBg, GuardiansBg, MarvelLogo, SpidermanBg } from "../../../core/images";
 
 export const heroData = [
   {
@@ -7,8 +7,8 @@ export const heroData = [
     year: "2018",
     duration: "2h 30m",
     genres: ["Action", "Adventure", "Sci-Fi"],
-    logo: assets.marvelLogo,
-    background: assets.guardiansBg,
+    logo: MarvelLogo,
+    background: GuardiansBg,
   },
   {
     id: 2,
@@ -16,8 +16,8 @@ export const heroData = [
     year: "2019",
     duration: "3h 1m",
     genres: ["Action", "Adventure", "Drama"],
-    logo: assets.marvelLogo,
-    background: assets.avengersBg,
+    logo: MarvelLogo,
+    background: AvengersBg,
   },
   {
     id: 3,
@@ -25,8 +25,8 @@ export const heroData = [
     year: "2021",
     duration: "2h 28m",
     genres: ["Action", "Adventure", "Fantasy"],
-    logo: assets.marvelLogo,
-    background: assets.spidermanBg,
+    logo: MarvelLogo,
+    background: SpidermanBg,
   },
   {
     id: 4,
@@ -34,8 +34,8 @@ export const heroData = [
     year: "2022",
     duration: "2h 6m",
     genres: ["Action", "Adventure", "Fantasy"],
-    logo: assets.marvelLogo,
-    background: assets.doctorStrangeBg,
+    logo: MarvelLogo,
+    background: DoctorStrangeBg,
   },
   {
     id: 5,
@@ -43,7 +43,7 @@ export const heroData = [
     year: "2018",
     duration: "2h 15m",
     genres: ["Action", "Adventure", "Sci-Fi"],
-    logo: assets.marvelLogo,
-    background: assets.blackPantherBg,
+    logo: MarvelLogo,
+    background: BlackPantherBg,
   },
 ];

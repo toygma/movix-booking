@@ -2,36 +2,10 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { assets } from "../assets/assets";
 import { Search, Menu, X, Ticket } from "lucide-react";
 import { useState } from "react";
-import MobileMenu from "./MobileMenu";
+import MobileMenu from "../../components/MobileMenu";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
+import { menudata } from "./constants/headerConstants";
 
-const menudata = [
-  {
-    id: 1,
-    href: "/",
-    title: "Home",
-  },
-  {
-    id: 2,
-    href: "/movies",
-    title: "Movies",
-  },
-  {
-    id: 3,
-    href: "/theaters",
-    title: "Theaters",
-  },
-  {
-    id: 4,
-    href: "/releases",
-    title: "Releases",
-  },
-  {
-    id: 5,
-    href: "/favorites",
-    title: "Favorites",
-  },
-];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

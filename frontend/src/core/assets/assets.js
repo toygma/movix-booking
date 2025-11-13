@@ -1,28 +1,3 @@
-import logo from "./logo.png";
-import marvelLogo from "./marvel.svg";
-import googlePlay from "./googlePlay.svg";
-import appStore from "./appStore.svg";
-import screenImage from "./screenImage.svg";
-import profile from "./profile.png";
-import spidermanBg from "./spidermanBg.jpg";
-import avengersBg from "./avengersBg.jpg";
-import blackPantherBg from "./blackPantherBg.jpg";
-import doctorStrangeBg from "./doctorStrangeBg.jpg";
-import guardiansBg from "./guardiansBg.jpg";
-
-export const assets = {
-  logo,
-  marvelLogo,
-  googlePlay,
-  appStore,
-  screenImage,
-  profile,
-  spidermanBg,
-  avengersBg,
-  guardiansBg,
-  blackPantherBg,
-  doctorStrangeBg,
-};
 
 export const dummyTrailers = [
   {

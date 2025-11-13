@@ -1,34 +1,7 @@
 import { useClerk, useUser } from "@clerk/clerk-react";
 import { Ticket } from "lucide-react";
 import { Link } from "react-router";
-
-const menudata = [
-  {
-    id: 1,
-    href: "/",
-    title: "Home",
-  },
-  {
-    id: 2,
-    href: "/movies",
-    title: "Movies",
-  },
-  {
-    id: 3,
-    href: "/theaters",
-    title: "Theaters",
-  },
-  {
-    id: 4,
-    href: "/releases",
-    title: "Releases",
-  },
-  {
-    id: 5,
-    href: "/favorites",
-    title: "Favorites",
-  },
-];
+import { menudata } from "../constants/headerConstants";
 
 const MobileMenu = ({ isMenuOpen, setIsMenuOpen }) => {
   const { user } = useUser();
