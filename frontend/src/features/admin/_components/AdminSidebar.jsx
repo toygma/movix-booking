@@ -36,7 +36,9 @@ const AdminSidebar = () => {
                 className="group-hover:text-blue-600 transition-colors"
               />
               <span className="font-medium">{item.label}</span>
-              {active && <span className="bg-red-400 h-full w-1 absolute right-0"></span>}
+              {active && (
+                <span className="bg-red-400 h-full w-1 absolute right-0"></span>
+              )}
             </Link>
           );
         })}

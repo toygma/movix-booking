@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Search, Filter } from "lucide-react";
-import { dummyShowsData } from "../../assets/assets";
-import MovieCard from "../../components/MovieCard";
-import Pagination from "../../components/Pagination";
+import { dummyShowsData } from "./constants/movieConstants";
+import MovieCard from "./_components/MovieCard";
+import Pagination from "../../shared/components/Pagination";
 
 const Movies = () => {
   const [searchQuery, setSearchQuery] = useState("");

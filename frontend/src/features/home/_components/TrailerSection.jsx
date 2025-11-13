@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { dummyTrailers } from "../../../../assets/assets";
 import BlueCircle from "./BlueCircle";
 import ReactPlayer from "react-player";
 import { motion } from "motion/react";
+import { dummyTrailers } from "../constants/homeConstants";
 
 const TrailerSection = () => {
   const [trailer, setTrailer] = useState(dummyTrailers[0]);

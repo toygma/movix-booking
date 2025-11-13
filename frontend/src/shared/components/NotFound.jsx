@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { assets } from "../assets/assets";
+import { Logo } from "../../core/images";
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const NotFound = () => {
         <div className="space-y-6 mb-10">
           <div className="flex items-center justify-center space-x-3 mb-4">
             <div className="h-px w-16 not-odd:bg-linear-to-br from-transparent to-red-500"></div>
-           <img src={assets.logo} alt="" className="w-20 h-20 object-cover rounded-full" />
+           <img src={Logo} alt="" className="w-20 h-20 object-cover rounded-full" />
             <div className="h-px w-16 bg-linear-to-l from-transparent to-red-500"></div>
           </div>
 

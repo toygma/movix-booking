@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { assets } from "../../assets/assets";
+import { Logo } from "../../../core/images";
 
 const AdminNavbar = () => {
   return (
@@ -7,7 +7,7 @@ const AdminNavbar = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3 group">
           <img 
-            src={assets.logo} 
+            src={Logo} 
             alt="Logo" 
             className="w-10 h-10 rounded-full object-cover shadow-sm group-hover:shadow-md transition-shadow"
           />

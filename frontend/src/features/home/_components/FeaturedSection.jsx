@@ -1,10 +1,10 @@
 import { ArrowRight } from "lucide-react";
-import MovieCard from "../../../../components/MovieCard";
-import { dummyShowsData } from "../../../../assets/assets";
 import BlueCircle from "./BlueCircle";
 import { motion } from "motion/react";
 import { useState } from "react";
-import Pagination from "../../../../components/Pagination";
+import { dummyShowsData } from "../../movies/constants/movieConstants";
+import MovieCard from "../../movies/_components/MovieCard";
+import Pagination from "../../../shared/components/Pagination";
 
 const FeaturedSection = () => {
   const [currentPage,setCurrentPage] = useState(1);

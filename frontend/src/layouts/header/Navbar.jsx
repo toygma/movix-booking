@@ -1,10 +1,10 @@
 import { Link, useLocation, useNavigate } from "react-router";
-import { assets } from "../assets/assets";
 import { Search, Menu, X, Ticket } from "lucide-react";
 import { useState } from "react";
-import MobileMenu from "../../components/MobileMenu";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 import { menudata } from "./constants/headerConstants";
+import { Logo } from "../../core/images";
+import MobileMenu from "./_components/MobileMenu";
 
 
 const Navbar = () => {
@@ -22,7 +22,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 group">
           <img
-            src={assets.logo}
+            src={Logo}
             alt="Movix Logo"
             className="w-12 h-12 rounded-full ring-2 ring-red-500/50 group-hover:ring-red-500 transition-all duration-300"
           />

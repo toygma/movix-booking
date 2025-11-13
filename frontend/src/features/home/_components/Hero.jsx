@@ -1,6 +1,6 @@
 import { Calendar, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
-import { heroData } from "./data";
+import { heroData } from "../constants/homeConstants";
 
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);

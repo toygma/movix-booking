@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router";
-import Loading from "../components/Loading";
-import AdminNavbar from "../pages/admin/AdminNavbar";
-import AdminSidebar from "../pages/admin/AdminSidebar";
+import Loading from "../shared/components/Loading";
+import AdminNavbar from "../features/admin/_components/AdminNavbar";
+import AdminSidebar from "../features/admin/_components/AdminSidebar";
 
 const AdminLayout = () => {
   return (

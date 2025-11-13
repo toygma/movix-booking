@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import { assets } from "../assets/assets";
 import {
   Facebook,
   Twitter,
@@ -9,6 +8,7 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
+import { Logo } from "../../core/images";
 
 const Footer = () => {
   const quickLinks = [
@@ -41,7 +41,7 @@ const Footer = () => {
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-3 group">
               <img
-                src={assets.logo}
+                src={Logo}
                 alt="Movix Logo"
                 className="w-12 h-12 rounded-full ring-2 ring-red-500/50 group-hover:ring-red-500 transition-all duration-300"
               />

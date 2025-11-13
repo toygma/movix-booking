@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import Loading from "../components/Loading";
+import Navbar from "./header/Navbar";
+import Footer from "./footer/Footer";
+import Loading from "../shared/components/Loading";
 
 const MainLayout = () => {
   return (
@@ -18,4 +18,4 @@ const MainLayout = () => {
   );
 };
 
-export default MainLayout
+export default MainLayout;

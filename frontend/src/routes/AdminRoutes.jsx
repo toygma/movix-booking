@@ -1,8 +1,8 @@
 import { lazy } from "react";
-import NotFound from "../components/NotFound";
 import AdminLayout from "../layouts/AdminLayout";
+import NotFound from "../shared/components/NotFound";
 
-const Dashboard = lazy(() => import("../pages/admin/Dashboard"));
+const Dashboard = lazy(() => import("../features/admin/Dashboard"));
 
 export const AdminRoutes = {
   path: "/admin",

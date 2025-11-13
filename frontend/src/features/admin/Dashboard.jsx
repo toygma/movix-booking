@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { TrendingUp, DollarSign, Users, Film } from "lucide-react";
-import { dummyDashboardData } from "../../assets/assets";
+import { dummyDashboardData } from "./constants/adminConstants";
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState({
     totalBookings: 0,
     totalRevenue: 0,
     activeShows: [],
-    totalUser: 0
+    totalUser: 0,
   });
 
   const dashboardCards = [
@@ -17,7 +17,7 @@ const Dashboard = () => {
       icon: TrendingUp,
       color: "blue",
       bgColor: "bg-blue-50",
-      iconColor: "text-blue-600"
+      iconColor: "text-blue-600",
     },
     {
       title: "Toplam Gelir",
@@ -25,7 +25,7 @@ const Dashboard = () => {
       icon: DollarSign,
       color: "green",
       bgColor: "bg-green-50",
-      iconColor: "text-green-600"
+      iconColor: "text-green-600",
     },
     {
       title: "Aktif Gösterimler",
@@ -33,7 +33,7 @@ const Dashboard = () => {
       icon: Film,
       color: "purple",
       bgColor: "bg-purple-50",
-      iconColor: "text-purple-600"
+      iconColor: "text-purple-600",
     },
     {
       title: "Toplam Kullanıcı",
@@ -41,8 +41,8 @@ const Dashboard = () => {
       icon: Users,
       color: "orange",
       bgColor: "bg-orange-50",
-      iconColor: "text-orange-600"
-    }
+      iconColor: "text-orange-600",
+    },
   ];
 
   const fetchDashboardData = async () => {
@@ -72,8 +72,12 @@ const Dashboard = () => {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm font-medium">{card.title}</p>
-                  <h3 className="text-2xl font-bold text-gray-900 mt-2">{card.value}</h3>
+                  <p className="text-gray-500 text-sm font-medium">
+                    {card.title}
+                  </p>
+                  <h3 className="text-2xl font-bold text-gray-900 mt-2">
+                    {card.value}
+                  </h3>
                 </div>
                 <div className={`${card.bgColor} p-3 rounded-lg`}>
                   <Icon className={card.iconColor} size={24} />
@@ -87,7 +91,9 @@ const Dashboard = () => {
       {/* Active Shows Section */}
       {dashboardData.activeShows?.length > 0 && (
         <div className="bg-white rounded-xl p-6 border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Aktif Gösterimler</h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            Aktif Gösterimler
+          </h2>
           <div className="space-y-3">
             {dashboardData.activeShows.map((show, index) => (
               <div
@@ -98,11 +104,14 @@ const Dashboard = () => {
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <div>
                     <p className="font-medium text-gray-900">
-                      {show.movie?.title || show.movie || show.name || "Film Adı"}
+                      {show.movie?.title ||
+                        show.movie ||
+                        show.name ||
+                        "Film Adı"}
                     </p>
                     {show.showDateTime && (
                       <p className="text-xs text-gray-500 mt-1">
-                        {new Date(show.showDateTime).toLocaleString('tr-TR')}
+                        {new Date(show.showDateTime).toLocaleString("tr-TR")}
                       </p>
                     )}
                   </div>
